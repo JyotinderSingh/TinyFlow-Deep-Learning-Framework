@@ -1,5 +1,7 @@
-from Layers import create_data, Layer_Dense
+from Layers import Layer_Dense
 from Activations import Activation_ReLU, Activation_Softmax
+from Loss import Loss_CategoricalCrossEntropy
+from Model import create_data, model_accuracy
 
 # Create Dataset
 # dimensions of the inputs is (100, 2)
@@ -18,6 +20,9 @@ dense2 = Layer_Dense(3, 3)  # second dense layer, 3 inputs, 3 outputs
 
 # Create a Softmax activation (to be used with Dense layer)
 activation2 = Activation_Softmax()
+
+# Create a loss function
+loss_function = Loss_CategoricalCrossEntropy()
 
 # Make a forward pass of our training data through this layer
 # the outputs are of the dimension (100, 3) [dot((100, 2), (2, 3))]
@@ -38,3 +43,12 @@ activation2.forward(dense2.output)
 
 # Outputs of the first few samples
 print(activation2.output[:5])
+
+# Calculate the loss from output of activation2 (Softmax activation)
+loss = loss_function.forward(activation2.output, y)
+
+# Print the loss value
+print('loss: ', loss)
+
+# Print the accuracy
+print('acc: ', model_accuracy(activation2.output, y))
