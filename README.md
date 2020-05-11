@@ -6,6 +6,7 @@
 - ReLU, Softmax activations
 - Generate random test data
 - Categorical Cross Entropy Loss
+- Backpropogation
 
 ---
 The name is just a joke that I made by combining the second half of my name (Jyotinder) with TensorFlow.
