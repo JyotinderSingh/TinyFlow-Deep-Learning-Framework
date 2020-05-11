@@ -27,6 +27,9 @@ class Activation_ReLU:
         # Zero gradient where the input values were <= 0
         self.dvalues[self.inputs <= 0] = 0
 
+    def __str__(self):
+        return "ReLU"
+
 
 # Softmax activation
 class Activation_Softmax:
@@ -53,3 +56,6 @@ class Activation_Softmax:
         ---- IMPLEMENTATION TO BE UPDATED SOON---'''
 
         self.dvalues = dvalues.copy()
+
+    def __str__(self):
+        return "Softmax"

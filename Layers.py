@@ -33,3 +33,6 @@ class Layer_Dense:
         self.dbiases = np.sum(dvalues, axis=0, keepdims=True)
         # Gradients on input values
         self.dvalues = np.dot(dvalues, self.weights.T)
+
+    def __str__(self):
+        return f"Dense: inputs: {self.weights.shape[0]}\tneurons: {self.weights.shape[1]}"
