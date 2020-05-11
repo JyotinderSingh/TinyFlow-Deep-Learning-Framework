@@ -4,7 +4,7 @@ np.random.seed(0)
 
 
 def create_data(points, classes, features=2):
-    '''create_data (number_of_samples, no_of_classes)\n
+    '''create_data (number_of_samples, no_of_classes, dimensions_per_sample)\n
         Each sample consists of 2 features (dimensions) by default
     '''
 

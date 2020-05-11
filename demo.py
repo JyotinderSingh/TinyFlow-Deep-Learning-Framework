@@ -5,7 +5,7 @@ from Model import create_data, model_accuracy
 from Optimizers import Optimizer_SGD
 
 # Create Dataset
-# dimensions of the inputs is (100, 2)
+# dimensions of the inputs is (100, 2), the number if classes is 3
 X, y = create_data(100, 3)
 
 # Create Dense layer with 2 input features and 64 output values
@@ -26,7 +26,7 @@ activation2 = Activation_Softmax()
 loss_function = Loss_CategoricalCrossEntropy()
 
 # Create Optimizer
-optimizer = Optimizer_SGD(learning_rate=.5)
+optimizer = Optimizer_SGD(decay=5e-8)
 
 # Train in loop
 for epoch in range(10001):
@@ -62,7 +62,8 @@ for epoch in range(10001):
     # print('acc: ', accuracy)
 
     if not epoch % 100:
-        print('epoch:', epoch, '\tacc', accuracy, '\tloss', loss)
+        print(
+            f'\nepoch: {epoch}, acc: {accuracy:.3f}, loss: {loss:.3f}, lr: {optimizer.current_learning_rate}')
 
     # Backward pass
     loss_function.backward(activation2.output, y)
@@ -78,5 +79,7 @@ for epoch in range(10001):
     # print(dense2.dbiases)
 
     # Update weights
+    optimizer.pre_update_params()
     optimizer.update_params(dense1)
     optimizer.update_params(dense2)
+    optimizer.post_update_params()
