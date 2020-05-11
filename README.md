@@ -7,6 +7,8 @@
 - Generate random test data
 - Categorical Cross Entropy Loss
 - Backpropogation
+- Optimizers
+  - SGD (with decay and momentum)
 
 ---
 The name is just a joke that I made by combining the second half of my name (Jyotinder) with TensorFlow.
