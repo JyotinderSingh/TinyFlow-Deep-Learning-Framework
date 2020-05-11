@@ -2,7 +2,7 @@ from Layers import Layer_Dense
 from Activations import Activation_ReLU, Activation_Softmax
 from Loss import Loss_CategoricalCrossEntropy
 from Model import create_data, model_accuracy
-from Optimizers import Optimizer_SGD, Optimizer_AdaGrad
+from Optimizers import Optimizer_SGD, Optimizer_AdaGrad, Optimizer_RMSprop
 
 # Create Dataset
 # dimensions of the inputs is (100, 2), the number if classes is 3
@@ -27,7 +27,8 @@ loss_function = Loss_CategoricalCrossEntropy()
 
 # Create Optimizer
 # optimizer = Optimizer_SGD(decay=1e-8, momentum=0.7)
-optimizer = Optimizer_AdaGrad(decay=1e-8)
+# optimizer = Optimizer_AdaGrad(decay=1e-8)
+optimizer = Optimizer_RMSprop(learning_rate=0.05, decay=1e-8, rho=0.999)
 
 # Train in loop
 for epoch in range(10001):
