@@ -11,4 +11,10 @@
   - SGD (with decay and momentum)
 
 ---
+
+## *Under Development*
+Files with an underscore prefix are under development
+- Network wrapper to allow easier API integration/development
+
+---
 The name is just a joke that I made by combining the second half of my name (Jyotinder) with TensorFlow.

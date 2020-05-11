@@ -7,11 +7,10 @@ import Optimizers
 
 
 class Network:
-    def __init__(self, inputFeatures, outputs):
+    def __init__(self, inputFeatures):
         self.layers = []
         self.inputFeatures = inputFeatures
-        self.outputs = outputs
-
+    
     def forwardPass(self):
         pass
 
