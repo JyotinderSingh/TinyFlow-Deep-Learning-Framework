@@ -1,5 +1,5 @@
 import numpy as np
-from Layers import Layer_Dense
+import Layers
 import Activations
 import Loss
 import Model
@@ -10,6 +10,7 @@ class Network:
     def __init__(self, inputFeatures):
         self.layers = []
         self.inputFeatures = inputFeatures
+        self.prev = -1
     
     def forwardPass(self):
         pass
@@ -22,12 +23,21 @@ class Network:
 
     def addDenseLayer(self, neurons):
         if len(self.layers) == 0:
-            denseX = Layer_Dense(self.inputFeatures, neurons)
+            denseX = Layers.Layer_Dense(self.inputFeatures, neurons)
             self.layers.append(denseX)
         else:
-            denseX = Layer_Dense(
-                self.layers[len(self.layers) - 1].weights.shape[1], neurons)
+            denseX = Layers.Layer_Dense(
+                self.layers[self.prev].weights.shape[1], neurons)
             self.layers.append(denseX)
+        self.prev = len(self.layers) - 1
+
+    def addReLU(self):
+        reluX = Activations.Activation_ReLU()
+        self.layers.append(reluX)
+
+    def addSoftmax(self):
+        softmaxX = Activations.Activation_Softmax()
+        self.layers.append(softmaxX)
 
     def getSummary(self):
         summary = ""

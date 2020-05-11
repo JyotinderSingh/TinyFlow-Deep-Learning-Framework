@@ -3,7 +3,7 @@ import numpy as np
 
 class Optimizer_SGD:
     '''Stochastic Gradient Descent Optimizer with Momentum\n
-    __init__(learning_rate, decay)\n
+    __init__(learning_rate, decay, momentum)\n
     Default learning rate is 1.0, default decay is 0.1
     '''
 
@@ -74,3 +74,61 @@ class Optimizer_SGD:
         '''
 
         self.iterations += 1
+
+
+class Optimizer_AdaGrad:
+    '''Adaptive Gradient Optimizer\n
+    __init__(learning_rate, decay, epsilon)\n
+    Default learning rate is 1.0, default decay is 0.1
+    '''
+
+    # Initialize optimizer - set settings,
+    # learning rate of 1 is default for this optimizer
+    def __init__(self, learning_rate=1., decay=0., epsilon=1e-7):
+        self.learning_rate = learning_rate
+        self.current_learning_rate = learning_rate
+        self.decay = decay
+        self.iterations = 0
+        self.epsilon = epsilon
+
+    # Call once before any parameter updates
+    def pre_update_params(self):
+        '''Optimizer_SGD.pre_update_params()\n
+        Called before parameter update to decay the learning rate
+        '''
+
+        # If we have a decay other than 0, we update learning rate
+        if self.decay:
+            self.current_learning_rate = self.current_learning_rate * \
+                (1. / (1. + self.decay * self.iterations))
+
+    # Update parameters
+    def update_params(self, layer):
+        '''Optimizer_SGD.update_params(layer)\n
+        Update the parameters to move the loss closer to the global minima
+        '''
+
+        # If layer does not contain cache arrays, create ones
+        # filled with zeros
+        if not hasattr(layer, 'weight_cache'):
+            layer.weight_cache = np.zeros_like(layer.weights)
+            layer.bias_cache = np.zeros_like(layer.biases)
+
+        # Update cache with squared current gradients
+        layer.weight_cache += layer.dweights**2
+        layer.bias_cache += layer.dbiases**2
+
+        # Vanilla SGD update +
+        # normalization with square root cache
+        layer.weights += -self.current_learning_rate * \
+            layer.dweights / (np.sqrt(layer.weight_cache) + self.epsilon)
+        layer.biases += -self.current_learning_rate * \
+            layer.dbiases / (np.sqrt(layer.bias_cache) + self.epsilon)
+
+    def post_update_params(self):
+        '''Optimizer_SGD.post_update_params()\n
+        Called after parameter update to increase iteration count for decay
+        '''
+
+        self.iterations += 1
+
