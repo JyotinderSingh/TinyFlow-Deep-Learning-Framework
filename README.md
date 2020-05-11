@@ -4,16 +4,19 @@
 ## *Features*
 - Fully connected Layers
 - ReLU, Softmax activations
-- Generate random test data
+- Generate random training data
 - Categorical Cross Entropy Loss
 - Backpropogation
 - Optimizers
   - SGD (with decay and momentum)
+  - AdaGrad
+  - RMSprop
+  - Adam
 
 ---
 
 ## *Under Development*
-Files with an underscore prefix are under development
+Files with a double underscore prefix are under development
 - Network wrapper to allow easier API integration/development
 
 ---
