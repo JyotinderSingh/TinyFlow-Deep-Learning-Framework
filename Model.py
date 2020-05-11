@@ -3,14 +3,14 @@ import numpy as np
 np.random.seed(0)
 
 
-def create_data(points, classes, features=2):
-    '''create_data (number_of_samples, no_of_classes, dimensions_per_sample)\n
+def create_data(points, classes):
+    '''create_data (number_of_samples, no_of_classes)\n
         Each sample consists of 2 features (dimensions) by default
     '''
 
     # each generated sample will have 2 features (hardcoded for now)
     # data matrix (each row = single example)
-    X = np.zeros((points*classes, features))    # data matrix (each row = single example)
+    X = np.zeros((points*classes, 2))    # data matrix (each row = single example)
     y = np.zeros(points*classes, dtype='uint8') # class labels
     for class_number in range(classes):
         ix = range(points*class_number, points*(class_number+1))
