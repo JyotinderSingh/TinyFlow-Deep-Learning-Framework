@@ -13,6 +13,20 @@ class Activation_ReLU:
         # np.maximum takes two inputs and finds element wise maximum
         self.output = np.maximum(0, inputs)
 
+        # Cache the input values for backprop
+        self.inputs = inputs
+
+    # Backward pass
+    def backward(self, dvalues):
+        '''Activation_ReLU.backward (upstream_gradient)\n
+        Calculates the backward pass through the current non linearity'''
+        # Since we need to modify the original variable,
+        # let's make a copy of the values first
+        self.dvalues = dvalues.copy()
+
+        # Zero gradient where the input values were <= 0
+        self.dvalues[self.inputs <= 0] = 0
+
 
 # Softmax activation
 class Activation_Softmax:
@@ -31,3 +45,11 @@ class Activation_Softmax:
         probabilities = exp_values / np.sum(exp_values, axis=1, keepdims=True)
 
         self.output = probabilities
+
+    # Backward pass
+    def backward(self, dvalues):
+        '''Activation_ReLU.backward (upstream_gradient)\n
+        Calculates the backward pass through the current non linearity\n
+        ---- IMPLEMENTATION TO BE UPDATED SOON---'''
+
+        self.dvalues = dvalues.copy()

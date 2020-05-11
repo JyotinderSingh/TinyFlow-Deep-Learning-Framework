@@ -18,3 +18,18 @@ class Layer_Dense:
 
         # Calculate the output values from inputs, weights, and biases
         self.output = np.dot(inputs, self.weights) + self.biases
+
+        # Cache the input values for backprop
+        self.inputs = inputs
+
+    # Backward pass
+    def backward(self, dvalues):
+        '''Layer_Dense.backward (upstream_gradient)\n
+        Calculates the backward pass through the current layer
+        '''
+
+        # Gradiesnts on parameters
+        self.dweights = np.dot(self.inputs.T, dvalues)
+        self.dbiases = np.sum(dvalues, axis=0, keepdims=True)
+        # Gradients on input values
+        self.dvalues = np.dot(dvalues, self.weights.T)

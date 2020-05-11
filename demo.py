@@ -52,3 +52,17 @@ print('loss: ', loss)
 
 # Print the accuracy
 print('acc: ', model_accuracy(activation2.output, y))
+
+# Backward pass
+loss_function.backward(activation2.output, y)
+activation2.backward(loss_function.dvalues)
+dense2.backward(activation2.dvalues)
+activation1.backward(dense2.dvalues)
+dense1.backward(activation1.dvalues)
+
+# Print gradients
+print(dense1.dweights)
+print(dense1.dbiases)
+print(dense2.dweights)
+print(dense2.dbiases)
+

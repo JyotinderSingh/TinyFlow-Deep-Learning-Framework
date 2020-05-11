@@ -11,15 +11,34 @@ class Loss_CategoricalCrossEntropy:
         '''
 
         # Number of samples in a batch
-        samples = len(y_pred)
+        samples = y_pred.shape[0]
 
-        # Probabilities for target values
-        y_pred = y_pred[range(samples), y_true]
+        # Probabilities for target values -
+        # only if categorical labels
+        if len(y_true.shape) == 1:
+            y_pred = y_pred[range(samples), y_true]
 
         # Losses
         negative_log_likelihoods = -np.log(y_pred)
 
+        # Mask values - only for one-hot encoded labels
+        if len(y_true.shape) == 2:
+            negative_log_likelihoods *= y_true
+
         # Overall loss
-        data_loss = np.mean(negative_log_likelihoods)
+        data_loss = np.sum(negative_log_likelihoods) / samples
 
         return data_loss
+
+    # Backward pass
+    def backward(self, dvalues, y_true):
+        '''Loss_CategoricalCrossEntropy.backward (upstream_gradient, labels)\n
+        Calculates the backward pass for the current loss function\n
+        ---IMPLEMENTATION TO BE UPDATED SOON---'''
+
+        samples = dvalues.shape[0]
+
+        # Make a backup so we can safely modify
+        self.dvalues = dvalues.copy()
+        self.dvalues[range(samples), y_true] -= 1
+        self.dvalues = self.dvalues / samples
