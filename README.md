@@ -1,3 +1,4 @@
+![Cover](https://i.imgur.com/0YF4BGU.png)
 # TinderFlow - A very (very) simple ANN Framework
 ### I built this framework as a small side project for educational purposes to allow people new to the field of Deep Learning to try their hands at building simple Neural Networks with minimal setup. The only dependency for the framework is NumPy.
 
