@@ -29,5 +29,7 @@ Files with a double underscore prefix are under development
 - Wrapper to allow easier API integration/development
   - Testing pending
 
+### **Contributions and Bug Fixes are welcome!**
+
 ---
 The name for the framework is just a joke that I made by combining the second half of my name (Jyotinder) with TensorFlow.
