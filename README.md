@@ -6,6 +6,8 @@ The framework while being extremely easy to use also allows a relatively high de
 
 The [demo.py](demo.py) file contains example code to get you started.
 
+The [__NetworkDemo.py](__NetworkDemo.py) file contains example code for using the Network wrapper.
+
 ## *Features*
 - Fully connected Layers
 - ReLU, Softmax activations
@@ -17,13 +19,15 @@ The [demo.py](demo.py) file contains example code to get you started.
   - AdaGrad
   - RMSprop
   - Adam
+- Network Wrapper with TinderFlow backend (under development)
+  - The wrapper currently supports setting up a basic Neural Network and running a simple training loop using the above components, without having to worry about instantiating and getting the dimensions right for every layer.
 
 ---
 
 ## *Under Development*
 Files with a double underscore prefix are under development
 - Wrapper to allow easier API integration/development
-  - The wrapper would allow users to create NNs without having to worry about the dimensions for each layer, and just focus on experimentation.
+  - Testing pending
 
 ---
 The name for the framework is just a joke that I made by combining the second half of my name (Jyotinder) with TensorFlow.

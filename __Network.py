@@ -19,9 +19,11 @@ class Network:
         self.prev = -1
 
     def forwardPass(self):
+        # will be used for refactoring later
         pass
 
     def backwardPass(self):
+        # will be used for refactoring later
         pass
 
     def train(self, input, labels, epochs, lossFunction, optimizer):
