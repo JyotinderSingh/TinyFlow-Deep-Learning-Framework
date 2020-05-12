@@ -2,7 +2,8 @@
 # TinderFlow - A very (very) simple ANN Framework
 ### I built this framework as a small side project for educational purposes to allow people new to the field of Deep Learning to try their hands at building simple Neural Networks with minimal setup. The only dependency for the framework is NumPy.
 
-The framework while being extremely easy to use also allows a relatively high degree of customizability, from being able to configure every single Optimizer's hyperparameters to generating your own classification training data right inside the framework allows for an infinite amount of possibilities.
+The framework while being extremely easy to use also allows a relatively high degree of customizability, from being able to configure every single Optimizer to generating your own classification training data right inside the framework allows for a ton of possibilities.
+All implementations are fully documented to help understand the underlying logic for each component better.
 
 The [demo.py](demo.py) file contains example code to get you started.
 
