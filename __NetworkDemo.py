@@ -3,10 +3,10 @@
 # expect weird bugs in weird scenarios
 # ------------------------------#
 
-from __Network import Network
-from Loss import Loss_CategoricalCrossEntropy
-from Optimizers import Optimizer_Adam
-from Model import create_data
+from TinyFlow.__Network import Network
+from TinyFlow.Loss import Loss_CategoricalCrossEntropy
+from TinyFlow.Optimizers import Optimizer_Adam
+from TinyFlow.Model import create_data
 
 # Create example data (each sample has 2 dimensions by default)
 # number of samples: 100, number of classes: 3
