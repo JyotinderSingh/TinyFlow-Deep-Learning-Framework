@@ -92,3 +92,6 @@ class Layer_Dropout:
     def backward(self, dvalues):
         # Gradient on values
         self.dvalues = dvalues * self.binary_mask
+
+    def __str__(self):
+        return f"Dropout: rate: {self.rate}"
