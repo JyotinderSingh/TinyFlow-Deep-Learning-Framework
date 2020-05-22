@@ -63,6 +63,32 @@ class Layer_Dense:
         # Gradients on input values
         self.dvalues = np.dot(dvalues, self.weights.T)
 
-
     def __str__(self):
         return f"Dense: inputs: {self.weights.shape[0]}\tneurons: {self.weights.shape[1]}"
+
+
+# Dropout
+class Layer_Dropout:
+    '''Layer_Dropout(rate)\n
+    rate = amount of neurons you intend to disable
+    '''
+
+    # Init
+    def __init__(self, rate):
+        self.rate = 1 - rate
+
+    # Forward pass
+    def forward(self, values):
+        # save input values
+        self.input = values
+
+        self.binary_mask = np.random.binomial(
+            1, self.rate, size=values.shape) / self.rate
+
+        # Apply mask to output values
+        self.output = values * self.binary_mask
+
+    # Backward pass
+    def backward(self, dvalues):
+        # Gradient on values
+        self.dvalues = dvalues * self.binary_mask
