@@ -1,4 +1,5 @@
 from flask import Flask
+from flask_socketio import SocketIO, emit, send
 from Layers import Layer_Dense
 from Activations import Activation_ReLU, Activation_Softmax
 from Loss import Loss_CategoricalCrossEntropy
@@ -12,8 +13,13 @@ logger = logging.getLogger(__name__)
 
 app = Flask(__name__)
 
-@app.route('/', methods=['POST', 'GET'])
-def index():
+app.config['SECRET_KEY'] = '--secret!--'
+
+socketio = SocketIO()
+socketio.init_app(app, cors_allowed_origins="*")
+
+@socketio.on('message')
+def handleMessage(msg):
 	# Create Dataset
 	# dimensions of the inputs is (100, 2), the number if classes is 3
 	X, y = create_data(100, 3)
@@ -75,6 +81,7 @@ def index():
 		# print('acc: ', accuracy)
 
 		if not epoch % 100:
+			emit('epoch', f'\nepoch: {epoch}, acc: {accuracy:.3f}, loss: {loss:.3f}, lr: {optimizer.current_learning_rate}')
 			print(f'\nepoch: {epoch}, acc: {accuracy:.3f}, loss: {loss:.3f}, lr: {optimizer.current_learning_rate}')
 
 		# Backward pass
@@ -99,4 +106,4 @@ def index():
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8080, threaded=True)
+	socketio.run(app)

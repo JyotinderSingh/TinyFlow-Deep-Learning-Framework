@@ -1,0 +1,24 @@
+<html>
+<head>
+<title>Demo</title>
+<script src="https://cdn.jsdelivr.net/npm/socket.io-client@2/dist/socket.io.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+</head>
+<body>
+<script type="text/javascript">
+$(document).ready(function() {
+
+	var socket = io.connect('http://localhost:5000');
+
+	socket.on('connect', function() {
+		socket.send('User has connected!');
+	});
+
+	socket.on('epoch', function(epoch) {
+		$("#epoch").append('<li>'+epoch+'</li>');
+	});
+});
+</script>
+<ul id="epoch"></ul>
+</body>
+</html>
