@@ -12,19 +12,10 @@ class Network:
     inputFeatures: Dimensions per sample
     '''
 
-
     def __init__(self, inputFeatures):
         self.layers = []
         self.inputFeatures = inputFeatures
         self.prev = -1
-
-    def forwardPass(self):
-        # will be used for refactoring later
-        pass
-
-    def backwardPass(self):
-        # will be used for refactoring later
-        pass
 
     def train(self, input, labels, epochs, lossFunction, optimizer):
         '''Performs a forward pass on the input data through the network for the
@@ -42,7 +33,6 @@ class Network:
 
         for epoch in range(epochs):
             inputLayerOutput = self.layers[0].forward(input)
-
 
             # Forward pass
             for idx in range(1, len(self.layers)):
@@ -66,19 +56,35 @@ class Network:
             optimizer.pre_update_params()
             for idx in range(len(self.layers)):
                 if isinstance(self.layers[idx], Layers.Layer_Dense):
-                    optimizer.update_params(self.layers[idx])            
+                    optimizer.update_params(self.layers[idx])
             optimizer.post_update_params
 
+    def test(self, X_test, y_test, lossFunction):
 
-    def addDenseLayer(self, neurons):
+        inputLayerOutput = self.layers[0].forward(X_test)
+
+        for idx in range(1, len(self.layers)):
+            self.layers[idx].forward(self.layers[idx - 1].output)
+
+        loss = lossFunction.forward(self.layers[-1].output, y_test)
+        accuracy = Model.model_accuracy(self.layers[-1].output, y_test)
+
+        print(f'validation, acc: {accuracy:.3f}, loss: {loss:.3f}')
+
+    def addDenseLayer(self, neurons, weight_regularizer_l1=0, weight_regularizer_l2=0, bias_regulariser_l1=0, bias_regulariser_l2=0):
         if len(self.layers) == 0:
-            denseX = Layers.Layer_Dense(self.inputFeatures, neurons)
+            denseX = Layers.Layer_Dense(self.inputFeatures, neurons, weight_regularizer_l1,
+                                        weight_regularizer_l2, bias_regulariser_l1, bias_regulariser_l2)
             self.layers.append(denseX)
         else:
             denseX = Layers.Layer_Dense(
                 self.layers[self.prev].weights.shape[1], neurons)
             self.layers.append(denseX)
         self.prev = len(self.layers) - 1
+
+    def addDropoutLayer(self, rate):
+        dropoutX = Layers.Layer_Dropout(rate)
+        self.layers.append(dropoutX)
 
     def addReLU(self):
         reluX = Activations.Activation_ReLU()
