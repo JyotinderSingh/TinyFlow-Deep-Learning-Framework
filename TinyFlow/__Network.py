@@ -1,9 +1,9 @@
 import numpy as np
-import Layers
-import Activations
-import Loss
-import Model
-import Optimizers
+from TinyFlow import Layers
+from TinyFlow import Activations
+from TinyFlow import Loss
+from TinyFlow import Model
+from TinyFlow import Optimizers
 
 
 class Network:

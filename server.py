@@ -1,10 +1,11 @@
 from flask import Flask
 from flask_socketio import SocketIO, emit, send
-from Layers import Layer_Dense
-from Activations import Activation_ReLU, Activation_Softmax
-from Loss import Loss_CategoricalCrossEntropy
-from Model import create_data, model_accuracy
-from Optimizers import Optimizer_SGD, Optimizer_AdaGrad, Optimizer_RMSprop, Optimizer_Adam
+
+from TinyFlow.Layers import Layer_Dense
+from TinyFlow.Activations import Activation_ReLU, Activation_Softmax
+from TinyFlow.Loss import Loss_CategoricalCrossEntropy
+from TinyFlow.Model import create_data, model_accuracy
+from TinyFlow.Optimizers import Optimizer_SGD, Optimizer_AdaGrad, Optimizer_RMSprop, Optimizer_Adam
 
 import logging
 
