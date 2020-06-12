@@ -1,4 +1,4 @@
-from TinyFlow.__Network import Network
+from TinyFlow.Network import Network
 from TinyFlow.Loss import Loss_CategoricalCrossEntropy
 from TinyFlow.Optimizers import Optimizer_Adam, Optimizer_AdaGrad, Optimizer_RMSprop, Optimizer_SGD
 from TinyFlow.Model import create_data

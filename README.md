@@ -11,7 +11,7 @@ All implementations are fully documented to help understand the underlying logic
 
 #### The [demo.py](demo.py) file contains example code to get you started.
 
-#### The [__NetworkDemo.py](__NetworkDemo.py) file contains example code for using the Network wrapper.
+#### The [NetworkDemo.py](NetworkDemo.py) file contains example code for using the Network wrapper.
 
 ## *Features*
 - Fully connected Layers
@@ -40,11 +40,6 @@ All implementations are fully documented to help understand the underlying logic
 ---
 
 ## *Under Development*
-*Files with a double underscore prefix are under development*
-- Wrapper to allow easier API integration/development
-  - Regularization yet to be integrated
-  - Dropout yet to be integrated
-  - Testing pending
 - Documentation
 
 ### **Contributions and Bug Fixes are welcome!**
