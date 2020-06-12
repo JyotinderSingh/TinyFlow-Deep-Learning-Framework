@@ -11,7 +11,7 @@ All implementations are fully documented to help understand the underlying logic
 
 #### The [demo.py](demo.py) file contains example code to get you started.
 
-#### The [NetworkDemo.py](NetworkDemo.py) file contains example code for using the Network wrapper.
+#### The [PNetworkDemo.py](NetworkDemo.py) file contains example code for using the Network wrapper.
 
 ## *Features*
 - Fully connected Layers
