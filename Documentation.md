@@ -54,6 +54,5 @@ The framework currently allows you to define 2 types of layers:
   - **Usage**
   ```
     dropout1 = Layer_Dropout(dropout_rate)
-
   ```
   - Instantiates a Dropout layer, where dropout_rate defines the fraction of neurons that will be dropped.
