@@ -40,11 +40,6 @@ All implementations are fully documented to help understand the underlying logic
 ---
 
 ## *Under Development*
-*Files with a double underscore prefix are under development*
-- Wrapper to allow easier API integration/development
-  - Regularization yet to be integrated
-  - Dropout yet to be integrated
-  - Testing pending
 - Documentation
 
 ### **Contributions and Bug Fixes are welcome!**

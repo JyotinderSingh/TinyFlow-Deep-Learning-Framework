@@ -1,9 +1,4 @@
-# ------------------------------#
-# __Network.py is still under development
-# expect weird bugs in weird scenarios
-# ------------------------------#
-
-from TinyFlow.__Network import Network
+from TinyFlow.Network import Network
 from TinyFlow.Loss import Loss_CategoricalCrossEntropy
 from TinyFlow.Optimizers import Optimizer_Adam
 from TinyFlow.Model import create_data
