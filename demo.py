@@ -69,7 +69,7 @@ for epoch in range(10001):
     loss = data_loss + regularization_loss
 
     # Print the loss value
-    # print('loss: ', loss)
+    print('loss: ', loss)
 
     # Print the accuracy
     accuracy = model_accuracy(activation2.output, y)
