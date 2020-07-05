@@ -1,12 +1,12 @@
 from TinyFlow.Layers import Layer_Dense, Layer_Dropout
 from TinyFlow.Activations import Activation_ReLU, Activation_Softmax
 from TinyFlow.Loss import Loss_CategoricalCrossEntropy
-from TinyFlow.Model import create_data, model_accuracy
+from TinyFlow.Model import spiral_data, model_accuracy
 from TinyFlow.Optimizers import Optimizer_SGD, Optimizer_AdaGrad, Optimizer_RMSprop, Optimizer_Adam
 
 # Create Dataset
 # dimensions of the inputs is (1000, 2), the number if classes is 3
-X, y = create_data(1000, 3)
+X, y = spiral_data(1000, 3)
 
 # Create Dense layer with 2 input features and 64 output values
 # first dense layer, 2 inputs (each sample has 2 featues), 64 outputs
@@ -103,7 +103,7 @@ for epoch in range(10001):
 # Validate model
 
 # Create TEST data set from the same distribution
-X_test, y_test = create_data(100, 3)
+X_test, y_test = spiral_data(100, 3)
 
 # Make a forward pass of this test data through our Model
 dense1.forward(X_test)

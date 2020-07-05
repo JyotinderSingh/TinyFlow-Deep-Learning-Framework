@@ -3,8 +3,8 @@ import numpy as np
 np.random.seed(0)
 
 
-def create_data(points, classes):
-    '''create_data (number_of_samples, no_of_classes)\n
+def spiral_data(points, classes):
+    '''spiral_data (number_of_samples, no_of_classes)\n
         Each sample consists of 2 features (dimensions) by default
     '''
 

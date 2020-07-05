@@ -40,6 +40,7 @@ class Loss:
 # Cross-entropy loss
 class Loss_CategoricalCrossEntropy(Loss):
 
+    # Forward Pass
     def forward(self, y_pred, y_true):
         '''Loss_CategoricalCrossEntropy.forward (predicted_values, ground_truth)\n
             Returns the negative_log_likelihood for the correct class score.\n
@@ -78,3 +79,32 @@ class Loss_CategoricalCrossEntropy(Loss):
         self.dvalues = dvalues.copy()
         self.dvalues[range(samples), y_true] -= 1
         self.dvalues = self.dvalues / samples
+
+
+# Binary Cross-entropy loss
+class Loss_BinaryCrossEntropy(Loss):
+
+    # Forward Pass
+    def forward(self, y_pred, y_true):
+
+        # Clip data to prevent division by 0 (log(1) gives you 0)
+        # Clip both sides to prevent any shifting the mean towards any value
+        y_pred_clipped = np.clip(y_pred, 1e-7, 1 - 1e-7)
+
+        # Calculate sample-wise loss
+        sample_losses = -(y_true * np.log(y_pred_clipped) +
+                          (1 - y_true) * np.log(1 - y_pred_clipped))
+
+        #  Return losses
+        return sample_losses
+
+    # Backward pass
+    def backward(self, dvalues, y_true):
+
+        # Clip data to prevent division by 0 (log(1) gives you 0)
+        # Clip both sides to prevent any shifting the mean towards any value
+        clipped_dvalues = np.clip(dvalues, 1e-7, 1 - 1e-7)
+
+        # Gradient on clipped values
+        self.dvalues = -(y_true / clipped_dvalues -
+                         (1 - y_true) / (1 - clipped_dvalues))

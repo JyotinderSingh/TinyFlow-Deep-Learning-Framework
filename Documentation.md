@@ -38,7 +38,7 @@ The code for this has been taken from [CS231N's public website](https://cs231n.g
 
 **Usage**
 ```
-X, y = create_data(number_of_examples, number_of_classes)
+X, y = spiral_data(number_of_examples, number_of_classes)
 ```
 Where X contains the training samples, and y contains the labels corresponding to each of the samples.
 

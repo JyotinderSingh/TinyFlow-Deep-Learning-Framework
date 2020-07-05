@@ -1,11 +1,11 @@
 from TinyFlow.Network import Network
 from TinyFlow.Loss import Loss_CategoricalCrossEntropy
 from TinyFlow.Optimizers import Optimizer_Adam
-from TinyFlow.Model import create_data
+from TinyFlow.Model import spiral_data
 
 # Create example data (each sample has 2 dimensions by default)
 # number of samples: 1000, number of classes: 3
-X, y = create_data(1000, 3)
+X, y = spiral_data(1000, 3)
 
 # Create a Network object, and pass 2 to it as each of our
 # input sample has 2 features
@@ -28,6 +28,6 @@ optimizer = Optimizer_Adam(learning_rate=0.05, decay=4e-8)
 net.train(X, y, 10001, loss_function, optimizer)
 
 # Test the accuracy on unseen data
-X_test, y_test = create_data(100, 3)
+X_test, y_test = spiral_data(100, 3)
 
 net.test(X_test, y_test, loss_function)
