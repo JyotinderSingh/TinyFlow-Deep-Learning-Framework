@@ -9,7 +9,7 @@ from TinyFlow.Layers import Layer_Dense
 from TinyFlow.Activations import Activation_Linear, Activation_ReLU
 from TinyFlow.Optimizers import Optimizer_Adam
 from TinyFlow.Loss import Loss_MeanSquaredError
-
+from TinyFlow.Metrics import Accuracy_Regression
 # Create a dataset
 X, y = sine_data()
 
@@ -25,7 +25,7 @@ model.add(Layer_Dense(64, 1))
 model.add(Activation_Linear())
 
 # Set loss and optimizer objects
-model.set(loss=Loss_MeanSquaredError(), optimizer=Optimizer_Adam(decay=1e-8))
+model.set(loss=Loss_MeanSquaredError(), optimizer=Optimizer_Adam(decay=1e-8), accuracy=Accuracy_Regression())
 
 # Compile the model
 model.compile_model()

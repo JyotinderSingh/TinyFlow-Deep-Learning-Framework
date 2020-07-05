@@ -1,6 +1,43 @@
 import numpy as np
 
 
+# Common Accuracy class
+class Accuracy:
+
+    # Calculates accuracy, given predictions and ground truth values
+    def calculate(self, predictions, y):
+
+        # Get comparison results
+        comparisons = self.compare(predictions, y)
+
+        # Calculate an accuracy
+        accuracy = np.mean(comparisons)
+
+        # Return the accuracy
+        return accuracy
+
+
+class Accuracy_Regression(Accuracy):
+
+    def __init__(self):
+        # Create a precision property
+        self.precision = None
+
+    # Calculates precision value based on passed in ground truth values
+    def init(self, y, reinit=False):
+        '''init (self, y, reinit=False)\n
+        reinit - Forces reinitilization of precision\n
+        Calculates precision value based on passed in ground truth values
+        '''
+
+        if self.precision is None or reinit:
+            self.precision = np.std(y) / 500
+
+    # Compare predictions to the ground truth values
+    def compare(self, predictions, y):
+        return np.absolute(predictions - y) < self.precision
+
+
 def model_accuracy_softmax(outputs, labels):
     '''Returns the accuracy of the model on the current batch'''
 

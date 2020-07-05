@@ -36,6 +36,72 @@ class Loss:
 
         return regularization_loss
 
+    # Regularization loss calculation
+
+    def network_regularization_loss(self):
+        '''network_regularization_loss (self)\n
+            Internal method for network wrapper for auto calculation 
+            of regularization loss of all the trainable layers
+        '''
+
+        # 0 by default
+        regularization_loss = 0
+
+        # Calculate regularization loss - iterate over all trainable layers
+        for layer in self.trainable_layers:
+            # L1 regularization - weights
+            # Only calculate when factor greater than 0
+            if layer.weight_regularizer_l1 > 0:
+                regularization_loss += layer.weight_regularizer_l1 * \
+                    np.sum(np.abs(layer.weights))
+
+            # L2 regularization - weights
+            # Only calculate when factor greater than 0
+            if layer.weight_regularizer_l2 > 0:
+                regularization_loss += layer.weight_regularizer_l2 * \
+                    np.sum(layer.weights * layer.weights)
+
+            # L1 regularization - biases
+            # Only calculate when factor greater than 0
+            if layer.bias_regularizer_l1 > 0:
+                regularization_loss += layer.bias_regularizer_l1 * \
+                    np.sum(np.abs(layer.biases))
+
+            # L2 regularization - biases
+            # Only calculate when factor greater than 0
+            if layer.bias_regularizer_l2 > 0:
+                regularization_loss += layer.bias_regularizer_l2 * \
+                    np.sum(layer.biases * layer.biases)
+
+        return regularization_loss
+
+    # Set/remember trainable layers
+    def remember_trainable_layers(self, trainable_layers):
+        '''remember_trainable_layers (self, trainable_layers)\n
+            internal method for Network wrapper to keep track of trainable layers
+        '''
+
+        self.trainable_layers = trainable_layers
+
+    # Calculates the data and regularization losses
+    # given model output and ground truth values
+
+    def calculate(self, output, y):
+        '''calculate(self, output, ground_truth)\n
+            internal method for Network wrapper\n
+            Calculates the data and regularization losses
+            given model output and ground truth values
+        '''
+
+        # Calculate sample losses
+        sample_losses = self.forward(output, y)
+
+        # Calculate the mean loss
+        data_loss = np.mean(sample_losses)
+
+        # Return the data and regularization losses
+        return data_loss, self.network_regularization_loss()
+
 
 # Cross-entropy loss
 class Loss_CategoricalCrossEntropy(Loss):

@@ -26,8 +26,12 @@ class Activation_ReLU:
         # Zero gradient where the input values were <= 0
         self.dvalues[self.inputs <= 0] = 0
 
+    # Calculate prediction for outputs
+    def predictions(self, outputs):
+        return outputs
+
     def __str__(self):
-        return "ReLU"
+        return "ReLU Activation"
 
 
 # Softmax activation
@@ -56,8 +60,12 @@ class Activation_Softmax:
 
         self.dvalues = dvalues.copy()
 
+    # return predictions for outputs
+    def predictions(self, outputs):
+        return np.argmax(outputs, axis=1)
+
     def __str__(self):
-        return "Softmax"
+        return "Softmax Activation"
 
 
 # Sigmoid activation
@@ -72,6 +80,13 @@ class Activation_Sigmoid:
     def backward(self, dvalues):
         # d/dx(sigm(x)) = sigm(x) * [1 - sigm(x)]
         self.dvalues = dvalues * (1 - self.output) * self.output
+
+    # Calculate predictions for outputs
+    def predictions(self, outputs):
+        return (outputs > 0.5) * 1
+
+    def __str__(self):
+        return "Sigmoid Activation"
 
 
 # Linear activation
@@ -90,3 +105,10 @@ class Activation_Linear:
         # downstream gradient = (local derivative ) * (upstream gradient)
         # self.dvalues = 1 * dvalues
         self.dvalues = dvalues.copy()
+
+    # Calculate predictions for outputs
+    def predictions(self, outputs):
+        return outputs
+
+    def __str__(self):
+        return "Linear Activation"
