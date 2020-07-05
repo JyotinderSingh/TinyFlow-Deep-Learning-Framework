@@ -1,7 +1,7 @@
 from TinyFlow.Network import Network
 from TinyFlow.Loss import Loss_CategoricalCrossEntropy
 from TinyFlow.Optimizers import Optimizer_Adam
-from TinyFlow.Model import spiral_data
+from TinyFlow.Datasets import spiral_data
 
 # Create example data (each sample has 2 dimensions by default)
 # number of samples: 1000, number of classes: 3

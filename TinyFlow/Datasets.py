@@ -21,25 +21,3 @@ def spiral_data(points, classes):
         X[ix] = np.c_[r*np.sin(t*2.5), r*np.cos(t*2.5)]
         y[ix] = class_number
     return X, y
-
-
-def model_accuracy_softmax(outputs, labels):
-    '''Returns the accuracy of the model on the current batch'''
-
-    # Calculate the accuracy from output and targets
-    # calculate values along first axis
-    predictions = np.argmax(outputs, axis=1)
-
-    accuracy = np.mean(predictions == labels)
-
-    return accuracy
-
-
-def model_accuracy_sigmoid(output, labels):
-    '''Returns the accuracy of the model on the current batch'''
-
-    predictions = (output > 0.5) * 1
-    
-    accuracy = np.mean(predictions == labels)
-
-    return accuracy

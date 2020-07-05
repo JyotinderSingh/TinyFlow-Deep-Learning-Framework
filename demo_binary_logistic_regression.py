@@ -1,6 +1,7 @@
 # Binary Logistic Regression Demo
 import numpy as np
-from TinyFlow.Model import spiral_data, model_accuracy_sigmoid
+from TinyFlow.Datasets import spiral_data
+from TinyFlow.Metrics import model_accuracy_sigmoid
 from TinyFlow.Layers import Layer_Dense
 from TinyFlow.Activations import Activation_ReLU, Activation_Sigmoid
 from TinyFlow.Loss import Loss_BinaryCrossEntropy
@@ -76,7 +77,7 @@ for epoch in range(10001):
     accuracy = model_accuracy_sigmoid(activation2.output, y)
 
     if not epoch % 100:
-        print(f'epoch: {epoch}, acc: {accuracy:.3f}, loss: {loss:.3f} (data_loss: {data_loss:.3f}, reg_loss: {regularization_loss:.3f}), lr: {optimizer.current_learning_rate:.3f}')
+        print(f'epoch: {epoch}, acc: {accuracy:.3f}, loss: {loss:.3f} (data_loss: {data_loss:.3f}, reg_loss: {regularization_loss:.3f}), lr: {optimizer.current_learning_rate:.5f}')
 
     # Backward pass
     loss_function.backward(activation2.output, y)

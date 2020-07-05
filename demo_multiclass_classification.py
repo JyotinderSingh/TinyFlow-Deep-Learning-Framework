@@ -1,8 +1,9 @@
 # Multiclass Classification Demo
+from TinyFlow.Datasets import spiral_data
 from TinyFlow.Layers import Layer_Dense, Layer_Dropout
 from TinyFlow.Activations import Activation_ReLU, Activation_Softmax
 from TinyFlow.Loss import Loss_CategoricalCrossEntropy
-from TinyFlow.Model import spiral_data, model_accuracy_softmax
+from TinyFlow.Metrics import model_accuracy_softmax
 from TinyFlow.Optimizers import Optimizer_SGD, Optimizer_AdaGrad, Optimizer_RMSprop, Optimizer_Adam
 
 # Create Dataset
@@ -78,7 +79,7 @@ for epoch in range(10001):
 
     if not epoch % 100:
         print(
-            f'\nepoch: {epoch}, acc: {accuracy:.3f}, loss: {loss:.3f}, (data loss: {data_loss:.3f}, reg_loss: {regularization_loss:.3f}), lr: {optimizer.current_learning_rate}')
+            f'\nepoch: {epoch}, acc: {accuracy:.3f}, loss: {loss:.3f}, (data loss: {data_loss:.3f}, reg_loss: {regularization_loss:.3f}), lr: {optimizer.current_learning_rate:.5f}')
 
     # Backward pass
     loss_function.backward(activation2.output, y)
