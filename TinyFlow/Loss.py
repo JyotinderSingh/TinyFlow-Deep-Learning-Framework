@@ -108,3 +108,21 @@ class Loss_BinaryCrossEntropy(Loss):
         # Gradient on clipped values
         self.dvalues = -(y_true / clipped_dvalues -
                          (1 - y_true) / (1 - clipped_dvalues))
+
+
+class Loss_MeanSquaredError(Loss):
+
+    # Forward pass
+    def forward(self, y_pred, y_true):
+
+        # Calculate loss
+        data_loss = 2 * np.mean((y_true - y_pred)**2, axis=-1)
+
+        # return losses
+        return data_loss
+
+    # Backward pass
+    def backward(self, dvalues, y_true):
+
+        # Gradient on values
+        self.dvalues = -(y_true - dvalues)
