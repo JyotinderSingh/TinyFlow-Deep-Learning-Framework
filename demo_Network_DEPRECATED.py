@@ -1,3 +1,10 @@
+############################################################################
+#***************************************************************************
+# THIS FILE USES A DEPRECATED VERSION OF THE NETWORK WRAPPER
+# It is HIGHLY RECOMMENDED to use the more stable and flexible Network class
+#***************************************************************************
+############################################################################
+
 from TinyFlow.Network_DEPRECATED import Network
 from TinyFlow.Loss import Loss_CategoricalCrossEntropy
 from TinyFlow.Optimizers import Optimizer_Adam

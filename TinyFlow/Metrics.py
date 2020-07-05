@@ -38,6 +38,27 @@ class Accuracy_Regression(Accuracy):
         return np.absolute(predictions - y) < self.precision
 
 
+class Accuracy_Categorical(Accuracy):
+
+    # No initalization is needed
+    def init(self, y):
+        pass
+
+    # Compares predictions to the ground truth values
+    def compare(self, predictions, y):
+        return predictions == y
+
+
+# class Accuracy_BinaryLogisticRegression(Accuracy):
+
+#     # No initialization is needed
+#     def init(self, y):
+#         pass
+
+#     def compare(self, predictions, y):
+#         return predictions == y
+
+
 def model_accuracy_softmax(outputs, labels):
     '''Returns the accuracy of the model on the current batch'''
 

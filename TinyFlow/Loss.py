@@ -86,7 +86,7 @@ class Loss:
     # Calculates the data and regularization losses
     # given model output and ground truth values
 
-    def calculate(self, output, y):
+    def calculate(self, output, y, *, include_regularization=False):
         '''calculate(self, output, ground_truth)\n
             internal method for Network wrapper\n
             Calculates the data and regularization losses
@@ -98,6 +98,10 @@ class Loss:
 
         # Calculate the mean loss
         data_loss = np.mean(sample_losses)
+
+        # If just data loss is needed, return it
+        if not include_regularization:
+            return data_loss
 
         # Return the data and regularization losses
         return data_loss, self.network_regularization_loss()

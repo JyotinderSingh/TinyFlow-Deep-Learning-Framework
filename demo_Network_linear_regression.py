@@ -1,8 +1,4 @@
-######################
-## UNDER DEVELOPMENT##
-######################
-
-# Demo for Network wrapper
+# Demo for Network wrapper to implement Linear Regression
 from TinyFlow.Network import Network
 from TinyFlow.Datasets import sine_data
 from TinyFlow.Layers import Layer_Dense

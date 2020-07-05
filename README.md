@@ -8,19 +8,21 @@ The framework while being extremely easy to use also allows a relatively high de
 All implementations are fully documented to help understand the underlying logic for each component better.
 
 
+#### The following files contain example code for using the Network wrapper.
+- [demo_Network_categorical.py](./demo_Network_categorical.py)
+- [demo_Network_binary_logistic_regression.py](./demo_Network_binary_logistic_regression.py)
+- [demo_Network_linear_regression.py](./demo_Network_linear_regression.py)
 
 #### The following files contain example code to get you started.
-- [demo_multiclass_classification.py](./demo_multiclass_classification.py) 
+- [demo_categorical.py](./demo_categorical.py) 
 - [demo_binary_logistic_regression.py](./demo_binary_logistic_regression.py)
+- [demo_linear_regression.py](./demo_linear_regression.py)
 
-#### The [NetworkDemo.py](NetworkDemo.py) file contains example code for using the Network wrapper.
-
-## *Features*
-- Fully connected Layers
-- Dropout Layers
-- ReLU, Softmax, Sigmoid activations
-- Generate training data (Classification data)
-- Categorical Cross Entropy Loss, Binary Cross Entropy Loss
+## **Features**
+- Fully connected, Dropout Layers
+- ReLU, Softmax, Sigmoid, and Linear activations
+- Generate synthetic training data (Classification, and Regression data)
+- Categorical Cross Entropy Loss, Binary Cross Entropy Loss, Mean Squared Error
 - L1 & L2 regularization
 - Backpropogation
 - Optimizers
@@ -28,8 +30,8 @@ All implementations are fully documented to help understand the underlying logic
   - AdaGrad
   - RMSprop
   - Adam
-- Network Wrapper with TinyFlow backend (under development)
-  - The wrapper currently supports setting up a basic Neural Network and running a simple training loop using the above components, without having to worry about instantiating and getting the dimensions right for every layer.
+- Network Wrapper with TinyFlow backend
+  - The wrapper supports setting up a Neural Network and running a simple training loop using the above components, without having to write long error prone code.
 
 ## Steps to use
 ```

@@ -1,7 +1,3 @@
-######################
-## UNDER DEVELOPMENT##
-######################
-
 # Network class
 class Network:
 
@@ -65,12 +61,12 @@ class Network:
         # Call the forward method on the input layer
         # This will set the output property that the first layer
         # is expecting as the 'prev' object
-        self.input_layer.forward(X)
+        self.input_layer.forward(X, training)
 
         # Call the forward methid of every object in sequence
         # while passing the output property of the previous object as a parameter
         for layer in self.layers:
-            layer.forward(layer.prev.output)
+            layer.forward(layer.prev.output, training)
 
         # 'layer' is now the last object from the list, return its output
         return layer.output
@@ -99,7 +95,7 @@ class Network:
             output = self.forward(X, training=True)
 
             # Calculate loss
-            data_loss, regularization_loss = self.loss.calculate(output, y)
+            data_loss, regularization_loss = self.loss.calculate(output, y, include_regularization=True)
 
             loss = data_loss + regularization_loss
 
@@ -118,11 +114,29 @@ class Network:
 
             # Print a summary
             if not epoch % print_every:
-                print(f'epoch: {epoch}, acc: {accuracy:.3f}, loss: {loss:.3f} (data_loss: {data_loss:.3f}, reg_loss: {regularization_loss:.3f}), lr: {self.optimizer.current_learning_rate}')
+                print(f'\nepoch: {epoch}\nacc: {accuracy:.3f}, loss: {loss:.3f} (data_loss: {data_loss:.3f}, reg_loss: {regularization_loss:.3f}), lr: {self.optimizer.current_learning_rate}')
 
+        # If validation data has been provided
+        if validation_data is not None:
+
+            # For better readability
+            X_val, y_val = validation_data
+
+            # Perform forward pass
+            output = self.forward(X_val, training=False)
+
+            # Calculate the loss
+            loss = self.loss.calculate(output, y_val)
+
+            # Get predictions and calculate validation accuracy
+            predictions = self.output_layer_activation.predictions(output)
+            accuracy = self.accuracy.calculate(predictions, y_val)
+
+            # Print a sumarry
+            print(f'\nvalidation,\nacc: {accuracy:.3f}, loss: {loss:.3f}')
 
 class Layer_Input:
 
     # Pass the input
-    def forward(self, inputs):
+    def forward(self, inputs, training):
         self.output = inputs

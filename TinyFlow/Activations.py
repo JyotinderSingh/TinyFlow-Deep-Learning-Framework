@@ -7,7 +7,7 @@ class Activation_ReLU:
     max (0, input)
     '''
 
-    def forward(self, inputs):
+    def forward(self, inputs, training):
         '''Activation_ReLU.forward (input_data)'''
         # np.maximum takes two inputs and finds element wise maximum
         self.output = np.maximum(0, inputs)
@@ -39,7 +39,7 @@ class Activation_Softmax:
     '''Softmax activation'''
 
     # Forward Pass
-    def forward(self, inputs):
+    def forward(self, inputs, training):
         '''Activation_Softmax.forward (input_data)'''
 
         # get unnormalized probabilities
@@ -71,7 +71,7 @@ class Activation_Softmax:
 # Sigmoid activation
 class Activation_Sigmoid:
     # Forward Pass
-    def forward(self, inputs):
+    def forward(self, inputs, training):
         # Save input and calcuilate/save output of the sigmoid function
         self.input = inputs
         self.output = 1 / (1 + np.exp(-inputs))
@@ -93,7 +93,7 @@ class Activation_Sigmoid:
 class Activation_Linear:
 
     # Forward pass
-    def forward(self, inputs):
+    def forward(self, inputs, training):
         # All you need to do is just cache the values
         self.input = inputs
         self.output = inputs

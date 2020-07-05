@@ -1,3 +1,10 @@
+############################################################################
+#***************************************************************************
+# THIS VERSION OF THE NETWORK WRAPPER HAS BEEN DEPRECATED
+# It is HIGHLY RECOMMENDED to use the more stable and flexible Network class
+#***************************************************************************
+############################################################################
+
 import numpy as np
 from TinyFlow import Layers
 from TinyFlow import Activations
