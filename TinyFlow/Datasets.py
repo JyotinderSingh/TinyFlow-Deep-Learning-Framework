@@ -3,9 +3,11 @@ import numpy as np
 np.random.seed(0)
 
 
+# Spiral Classification Dataset
 def spiral_data(points, classes):
     '''spiral_data (number_of_samples, no_of_classes)\n
-        Each sample consists of 2 features (dimensions) by default
+        Each sample consists of 2 features (dimensions) by \n
+        Useful for generating classification data
     '''
 
     # each generated sample will have 2 features (hardcoded for now)
@@ -20,4 +22,14 @@ def spiral_data(points, classes):
                         points) + np.random.randn(points)*0.2   # theta
         X[ix] = np.c_[r*np.sin(t*2.5), r*np.cos(t*2.5)]
         y[ix] = class_number
+    return X, y
+
+
+# Sin dataset
+def sin_data(samples=10000):
+    ''' sin_data (number_of_samples)\n
+    Useful for generating regression data
+    '''
+    X = np.arange(samples).reshape(-1, 1) / samples
+    y = np.sin(2 * np.pi * X).reshape(-1, 1)
     return X, y
