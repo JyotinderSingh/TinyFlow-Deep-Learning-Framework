@@ -1,11 +1,12 @@
+# Multiclass Classification Demo
 from TinyFlow.Layers import Layer_Dense, Layer_Dropout
 from TinyFlow.Activations import Activation_ReLU, Activation_Softmax
 from TinyFlow.Loss import Loss_CategoricalCrossEntropy
-from TinyFlow.Model import spiral_data, model_accuracy
+from TinyFlow.Model import spiral_data, model_accuracy_softmax
 from TinyFlow.Optimizers import Optimizer_SGD, Optimizer_AdaGrad, Optimizer_RMSprop, Optimizer_Adam
 
 # Create Dataset
-# dimensions of the inputs is (1000, 2), the number if classes is 3
+# dimensions of the inputs is (1000, 2), the number of classes is 3
 X, y = spiral_data(1000, 3)
 
 # Create Dense layer with 2 input features and 64 output values
@@ -72,7 +73,7 @@ for epoch in range(10001):
     # print('loss: ', loss)
 
     # Print the accuracy
-    accuracy = model_accuracy(activation2.output, y)
+    accuracy = model_accuracy_softmax(activation2.output, y)
     # print('acc: ', accuracy)
 
     if not epoch % 100:
@@ -115,6 +116,6 @@ activation2.forward(dense2.output)
 loss = loss_function.forward(activation2.output, y_test)
 
 # Calculate the accuracy from output of model and targets
-accuracy = model_accuracy(activation2.output, y_test)
+accuracy = model_accuracy_softmax(activation2.output, y_test)
 
 print(f'validation, acc: {accuracy:.3f}, loss: {loss:.3f}')

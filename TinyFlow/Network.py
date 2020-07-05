@@ -40,7 +40,7 @@ class Network:
 
             # Get metrics
             loss = lossFunction.forward(self.layers[-1].output, labels)
-            accuracy = Model.model_accuracy(self.layers[-1].output, labels)
+            accuracy = Model.model_accuracy_softmax(self.layers[-1].output, labels)
 
             if not epoch % 100:
                 print(
@@ -67,7 +67,7 @@ class Network:
             self.layers[idx].forward(self.layers[idx - 1].output)
 
         loss = lossFunction.forward(self.layers[-1].output, y_test)
-        accuracy = Model.model_accuracy(self.layers[-1].output, y_test)
+        accuracy = Model.model_accuracy_softmax(self.layers[-1].output, y_test)
 
         print(f'validation, acc: {accuracy:.3f}, loss: {loss:.3f}')
 

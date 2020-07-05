@@ -9,16 +9,18 @@ All implementations are fully documented to help understand the underlying logic
 
 
 
-#### The [demo.py](demo.py) file contains example code to get you started.
+#### The following files contain example code to get you started.
+- [demo_multiclass_classification.py](./demo_multiclass_classification.py) 
+- [demo_binary_logistic_regression.py](./demo_binary_logistic_regression.py)
 
-#### The [PNetworkDemo.py](NetworkDemo.py) file contains example code for using the Network wrapper.
+#### The [NetworkDemo.py](NetworkDemo.py) file contains example code for using the Network wrapper.
 
 ## *Features*
 - Fully connected Layers
 - Dropout Layers
-- ReLU, Softmax activations
+- ReLU, Softmax, Sigmoid activations
 - Generate training data (Classification data)
-- Categorical Cross Entropy Loss
+- Categorical Cross Entropy Loss, Binary Cross Entropy Loss
 - L1 & L2 regularization
 - Backpropogation
 - Optimizers

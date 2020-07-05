@@ -1,8 +1,7 @@
 import numpy as np
 
+
 # ReLU activation
-
-
 class Activation_ReLU:
     '''ReLU activation\n
     max (0, input)
