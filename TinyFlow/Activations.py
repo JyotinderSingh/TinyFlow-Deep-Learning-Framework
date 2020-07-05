@@ -72,3 +72,21 @@ class Activation_Sigmoid:
     def backward(self, dvalues):
         # d/dx(sigm(x)) = sigm(x) * [1 - sigm(x)]
         self.dvalues = dvalues * (1 - self.output) * self.output
+
+
+# Linear activation
+class Activation_Linear:
+
+    # Forward pass
+    def forward(self, inputs):
+        # All you need to do is just cache the values
+        self.input = inputs
+        self.output = inputs
+
+    # Backward pass
+    def backward(self, dvalues):
+        # Chain rule:
+        # local Derivative = 1, upstream gradient = dvalues
+        # downstream gradient = (local derivative ) * (upstream gradient)
+        # self.dvalues = 1 * dvalues
+        self.dvalues = dvalues.copy()

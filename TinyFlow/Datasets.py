@@ -25,8 +25,8 @@ def spiral_data(points, classes):
     return X, y
 
 
-# Sin dataset
-def sin_data(samples=10000):
+# Sine dataset
+def sine_data(samples=10000):
     ''' sin_data (number_of_samples)\n
     Useful for generating regression data
     '''
