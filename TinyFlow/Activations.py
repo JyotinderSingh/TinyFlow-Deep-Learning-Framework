@@ -59,3 +59,17 @@ class Activation_Softmax:
 
     def __str__(self):
         return "Softmax"
+
+
+# Sigmoid activation
+class Activation_Sigmoid:
+    # Forward Pass
+    def forward(self, inputs):
+        # Save input and calcuilate/save output of the sigmoid function
+        self.input = inputs
+        self.output = 1 / (1 + np.exp(-inputs))
+
+    # Backward pass
+    def backward(self, dvalues):
+        # d/dx(sigm(x)) = sigm(x) * [1 - sigm(x)]
+        self.dvalues = dvalues * (1 - self.output) * self.output
