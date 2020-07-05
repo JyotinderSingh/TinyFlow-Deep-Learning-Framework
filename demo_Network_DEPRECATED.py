@@ -1,4 +1,4 @@
-from TinyFlow.Network import Network
+from TinyFlow.Network_DEPRECATED import Network
 from TinyFlow.Loss import Loss_CategoricalCrossEntropy
 from TinyFlow.Optimizers import Optimizer_Adam
 from TinyFlow.Datasets import spiral_data

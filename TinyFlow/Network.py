@@ -1,102 +1,81 @@
-import numpy as np
-from TinyFlow import Layers
-from TinyFlow import Activations
-from TinyFlow import Loss
-from TinyFlow import Metrics
-from TinyFlow import Optimizers
+######################
+## UNDER DEVELOPMENT##
+######################
 
-
+# Network class
 class Network:
-    '''Network(inputFeatures)
-    Creates a new Neural Network object.
-    inputFeatures: Dimensions per sample
-    '''
 
-    def __init__(self, inputFeatures):
+    def __init__(self):
+
+        # Create a list of all Network objects
         self.layers = []
-        self.inputFeatures = inputFeatures
-        self.prev = -1
 
-    def train(self, input, labels, epochs, lossFunction, optimizer):
-        '''Performs a forward pass on the input data through the network for the
-        specified number of epochs.
-        parameters:
-        input: np.array object\n
-        labels: np.array object\n
-        epochs: integer\n
-        lossFunction: instance of some loss function (eg. Loss_CategoricalCrossEntropy)\n
-        optimizer: instance of an optimizer (eg. Adam, AdaGrad, SGD etc.)
-        '''
+    def add(self, layer):
+        self.layers.append(layer)
 
-        assert input.shape[1] == self.inputFeatures
-        assert len(self.layers) > 0
+    def set(self, *, loss, optimizer):
+        self.loss = loss
+        self.optimizer = optimizer
 
-        for epoch in range(epochs):
-            inputLayerOutput = self.layers[0].forward(input)
+    def compile_model(self):
 
-            # Forward pass
-            for idx in range(1, len(self.layers)):
-                self.layers[idx].forward(self.layers[idx - 1].output)
+        # Create and set the input layer
+        self.input_layer = Layer_Input()
 
-            # Get metrics
-            loss = lossFunction.forward(self.layers[-1].output, labels)
-            accuracy = Metrics.model_accuracy_softmax(self.layers[-1].output, labels)
+        # Count all the objects
+        layer_count = len(self.layers)
 
-            if not epoch % 100:
-                print(
-                    f'\nepoch: {epoch}, acc: {accuracy:.3f}, loss: {loss:.3f}, lr: {optimizer.current_learning_rate}')
+        # Iterate through all the objects
+        for i in range(layer_count):
 
-            # Backward pass
-            lossFunction.backward(self.layers[-1].output, labels)
-            self.layers[-1].backward(lossFunction.dvalues)
-            for idx in range(len(self.layers) - 2, -1, -1):
-                self.layers[idx].backward(self.layers[idx + 1].dvalues)
+            # If this is the first layer, the input layer will be considered
+            # as the previous object
+            if i == 0:
+                self.layers[i].prev = self.input_layer
+                self.layers[i].next = self.layers[i + 1]
 
-            # Update weights
-            optimizer.pre_update_params()
-            for idx in range(len(self.layers)):
-                if isinstance(self.layers[idx], Layers.Layer_Dense):
-                    optimizer.update_params(self.layers[idx])
-            optimizer.post_update_params
+            # All layers except first and last
+            elif i < layer_count - 1:
+                self.layers[i].prev = self.layers[i - 1]
+                self.layers[i].next = self.layers[i + 1]
 
-    def test(self, X_test, y_test, lossFunction):
+            # The last layer will have the next object as the loss
+            else:
+                self.layers[i].prev = self.layers[i - 1]
+                self.layers[i].next = self.loss
 
-        inputLayerOutput = self.layers[0].forward(X_test)
+    def forward(self, X):
 
-        for idx in range(1, len(self.layers)):
-            self.layers[idx].forward(self.layers[idx - 1].output)
+        # Call the forward method on the input layer
+        # This will set the output property that the first layer
+        # is expecting as the 'prev' object
+        self.input_layer.forward(X)
 
-        loss = lossFunction.forward(self.layers[-1].output, y_test)
-        accuracy = Metrics.model_accuracy_softmax(self.layers[-1].output, y_test)
+        # Call the forward methid of every object in sequence
+        # while passing the output property of the previous object as a parameter
+        for layer in self.layers:
+            layer.forward(layer.prev.output)
 
-        print(f'validation, acc: {accuracy:.3f}, loss: {loss:.3f}')
+        # 'layer' is now the last object from the list, return its output
+        return layer.output
 
-    def addDenseLayer(self, neurons, weight_regularizer_l1=0, weight_regularizer_l2=0, bias_regulariser_l1=0, bias_regulariser_l2=0):
-        if len(self.layers) == 0:
-            denseX = Layers.Layer_Dense(self.inputFeatures, neurons, weight_regularizer_l1,
-                                        weight_regularizer_l2, bias_regulariser_l1, bias_regulariser_l2)
-            self.layers.append(denseX)
-        else:
-            denseX = Layers.Layer_Dense(
-                self.layers[self.prev].weights.shape[1], neurons)
-            self.layers.append(denseX)
-        self.prev = len(self.layers) - 1
+    def train(self, X, y, *, epochs=1, print_every=1):
 
-    def addDropoutLayer(self, rate):
-        dropoutX = Layers.Layer_Dropout(rate)
-        self.layers.append(dropoutX)
+        # Main training loop
+        for epoch in range(1, epochs+1):
 
-    def addReLU(self):
-        reluX = Activations.Activation_ReLU()
-        self.layers.append(reluX)
+            # Perform the forward pass
+            output = self.forward(X)
 
-    def addSoftmax(self):
-        softmaxX = Activations.Activation_Softmax()
-        self.layers.append(softmaxX)
+            # Temporary
+            print(output)
+            exit()
 
-    def getSummary(self):
-        summary = ""
-        for i in range(len(self.layers)):
-            summary += f"Layer {str(i)} <" + self.layers[i].__str__() + ">\n"
-        summary = summary.strip()
-        return summary
+
+
+
+class Layer_Input:
+
+    # Pass the input
+    def forward(self, inputs):
+        self.output = inputs
