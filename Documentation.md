@@ -58,7 +58,7 @@ The framework currently allows you to define 2 types of layers:
 - **Dense / Fully Connected**
   - **Usage**
   ```
-  fc1 = dense1 = Layer_Dense(number_of_inputs, number_of_neurons, weight_regularizer_l1, weight_regularizer_l2, bias_regulariser_l2, bias_regulariser_l2)
+  dense1 = Layer_Dense(number_of_inputs, number_of_neurons, weight_regularizer_l1, weight_regularizer_l2, bias_regulariser_l2, bias_regulariser_l2)
   ```
   - This instantiates a fully connected layer, with user defined number of inputs and neurons. You have optional arguments available to define the regularization strength for L1 and L2 regularization.
 - **Dropout**
@@ -67,3 +67,20 @@ The framework currently allows you to define 2 types of layers:
     dropout1 = Layer_Dropout(dropout_rate)
   ```
   - Instantiates a Dropout layer, where dropout_rate defines the fraction of neurons that will be dropped.
+
+## **Activation Functions**
+The framework includes 4 main kinds of activation functions:
+- **ReLU**
+  - **Usage** (Checkout demo files for elaborate usage instructions)
+
+  ```
+  ...
+  
+  activation1 = Activation_ReLU()
+  
+  ...
+  
+  // inside the training loop
+
+  activation1.forward(dense1.output)
+  ```
