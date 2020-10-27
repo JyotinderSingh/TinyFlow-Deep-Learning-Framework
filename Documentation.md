@@ -84,3 +84,50 @@ The framework includes 4 main kinds of activation functions:
 
   activation1.forward(dense1.output)
   ```
+
+  ```
+  ...
+  
+  // Using ReLU with Network
+
+  model = Network()
+
+  ...
+
+  model.add(Activation_ReLU())
+  
+  ...
+  
+  ```
+
+- **Softmax**
+  - **Usage** (Checkout demo files for elaborate usage instructions)
+
+   ```
+  ...
+  
+  activation2 = Activation_Softmax()
+
+  
+  ...
+  
+  // inside the training loop
+
+  activation2.forward(dense2.output)
+
+  ```
+
+  ```
+  ...
+  
+  // Using ReLU with Network
+
+  model = Network()
+
+  ...
+
+  model.add(Activation_Softmax())
+  
+  ...
+  
+  ```
