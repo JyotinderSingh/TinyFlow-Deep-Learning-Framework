@@ -26,7 +26,7 @@ The demos walk you through the following:
 
 - [Generating random data](#generating-random-data)
 - [Layers](#layers)
-- Activation Functions
+- [Activation Functions](#activation-functions)
 - Optimizers
 - Loss Function
 - Modelling an actual network
@@ -127,6 +127,38 @@ The framework includes 4 main kinds of activation functions:
   ...
 
   model.add(Activation_Softmax())
+  
+  ...
+  
+  ```
+
+  - **Sigmoid**
+  - **Usage** (Checkout demo files for elaborate usage instructions)
+
+   ```
+  ...
+  
+  activation3 = Activation_Sigmoid()
+
+  
+  ...
+  
+  // inside the training loop
+
+  activation3.forward(dense2.output)
+
+  ```
+
+  ```
+  ...
+  
+  // Using ReLU with Network
+
+  model = Network()
+
+  ...
+
+  model.add(Activation_Sigmoid())
   
   ...
   
