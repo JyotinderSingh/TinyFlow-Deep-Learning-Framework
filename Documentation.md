@@ -10,6 +10,17 @@ One of the most exciting features of the framework is a wrapper component, calle
 
 This document simply takes you through on how to get started with this framework and serves as a reference to all the different components the Framework makes available to you.
 
+# **Quick Start**
+The fastest way to get started with building neural networks in TinyFlow is to take a look at the demo files available in the root of the repository (also linked in the readme) and take a look at the code. TinyFlow was built with an aim to make it easy to learn, read, and implement neural networks.
+The demo files implement a few common algorithms/networks which you might want to implement, and can serve as a good starting point to move forward.
+The demos walk you through the following:
+- Linear Regression
+- Linear Regression using Network
+- Binary Logistic Regression
+- Binary Logistic Regression using Network
+- Categorical Classification
+- Categorical Classification using Network
+
 # **Index**
 ### **The Bare-Bones Framework**
 
