@@ -80,7 +80,7 @@ The framework includes 4 main kinds of activation functions:
   
   ...
   
-  // inside the training loop
+  # inside the training loop
 
   activation1.forward(dense1.output)
   ```
@@ -88,7 +88,7 @@ The framework includes 4 main kinds of activation functions:
   ```python
   ...
   
-  // Using ReLU with Network
+  # Using ReLU with Network
 
   model = Network()
 
@@ -111,7 +111,7 @@ The framework includes 4 main kinds of activation functions:
   
   ...
   
-  // inside the training loop
+  # inside the training loop
 
   activation2.forward(dense2.output)
 
@@ -120,7 +120,7 @@ The framework includes 4 main kinds of activation functions:
   ```python
   ...
   
-  // Using ReLU with Network
+  # Using ReLU with Network
 
   model = Network()
 
@@ -143,7 +143,7 @@ The framework includes 4 main kinds of activation functions:
   
   ...
   
-  // inside the training loop
+  # inside the training loop
 
   activation3.forward(dense2.output)
 
@@ -152,7 +152,7 @@ The framework includes 4 main kinds of activation functions:
   ```python
   ...
   
-  // Using ReLU with Network
+  # Using ReLU with Network
 
   model = Network()
 
